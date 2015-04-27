@@ -3,6 +3,13 @@
 
 包含基本的gulp组件
 
+### 使用
+
+使用前需要全局安装gulp
+```shell
+npm install -g gulp
+```
+
 ### 安装插件的基本方式：
 
 ```shell
@@ -30,4 +37,3 @@ path portion:
   zero or more directories and subdirectories searching for matches.
   It does not crawl symlinked directories.
 
- 
