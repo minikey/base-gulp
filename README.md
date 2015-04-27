@@ -9,7 +9,11 @@
 ```shell
 npm install -g gulp
 ```
-进入到项目node_modules目录，解压node_modules.7z到当前目录（里面包含了图片压缩需要的模块，因为上传会报错，隐藏我压缩了）
+进入到项目node_modules目录，在node命令环境下执行：
+```shell
+npm install
+```
+执行过程可能比较慢，因为依赖的gulp-imagemin依赖的包比较多
 
 回到项目根目录，将要发布的源代码拷贝到src/目录下
 目录结构：
