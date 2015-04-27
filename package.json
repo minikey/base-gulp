@@ -19,7 +19,10 @@
     "gulp-livereload": "*",
     "del": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-imagemin": "^2.2.1",
+    "imagemin-pngquant": "^4.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -10,60 +10,61 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
-    livereload = require('gulp-livereload'),
+    // livereload = require('gulp-livereload'),
     del = require('del');
 // Styles
 gulp.task('styles', function() {
-  return gulp.src('src/styles/main.scss')
-    .pipe(sass({ style: 'expanded', }))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest('dist/styles'))
+  return gulp.src('src/css/**/*.css')
+    // .pipe(sass({ style: 'expanded', }))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 7', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest('dist/css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('dist/css'))
     .pipe(notify({ message: 'Styles task complete' }));
 });
 // Scripts
 gulp.task('scripts', function() {
-  return gulp.src('src/scripts/**/*.js')
-    .pipe(jshint('.jshintrc'))
+  return gulp.src('src/js/**/*.js')
+    // .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/scripts'))
+    // .pipe(concat('main.js'))
+    .pipe(gulp.dest('dist/js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest('dist/scripts'))
+    .pipe(gulp.dest('dist/js'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 // Images
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
-    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+    .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true, use: [pngquant()] }))
     .pipe(gulp.dest('dist/images'))
     .pipe(notify({ message: 'Images task complete' }));
 });
 // Clean
 gulp.task('clean', function(cb) {
-    del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
+    del(['dist/css', 'dist/js', 'dist/images'], cb)
 });
 // Default task
 gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
 // Watch
-gulp.task('watch', function() {
-  // Watch .scss files
-  gulp.watch('src/styles/**/*.scss', ['styles']);
-  // Watch .js files
-  gulp.watch('src/scripts/**/*.js', ['scripts']);
-  // Watch image files
-  gulp.watch('src/images/**/*', ['images']);
-  // Create LiveReload server
-  livereload.listen();
-  // Watch any files in dist/, reload on change
-  gulp.watch(['dist/**']).on('change', livereload.changed);
-});
+// gulp.task('watch', function() {
+//   // Watch .scss files
+//   gulp.watch('src/styles/**/*.scss', ['styles']);
+//   // Watch .js files
+//   gulp.watch('src/scripts/**/*.js', ['scripts']);
+//   // Watch image files
+//   gulp.watch('src/images/**/*', ['images']);
+//   // Create LiveReload server
+//   livereload.listen();
+//   // Watch any files in dist/, reload on change
+//   gulp.watch(['dist/**']).on('change', livereload.changed);
+// });
