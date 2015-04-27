@@ -10,11 +10,13 @@
 npm install -g gulp
 ```
 进入到项目node_modules目录，解压node_modules.7z到当前目录（里面包含了图片压缩需要的模块，因为上传会报错，隐藏我压缩了）
+
 回到项目根目录，将要发布的源代码拷贝到src/目录下
 目录结构：
-src/images/  放置图片，里面可以有子文件夹
-src/js/      放置js代码，里面可以有子文件夹
-src/css/     放置css代码，里面可也有子文件夹
+
+* src/images/  放置图片，里面可以有子文件夹
+* src/js/      放置js代码，里面可以有子文件夹
+* src/css/     放置css代码，里面可也有子文件夹
 
 执行命令：
 ```shell
