@@ -17,6 +17,7 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     // livereload = require('gulp-livereload'),
     del = require('del');
+    
 // Styles
 gulp.task('styles', function() {
   return gulp.src('src/css/**/*.css')
@@ -28,6 +29,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('dist/css'))
     .pipe(notify({ message: 'Styles task complete' }));
 });
+
 // Scripts
 gulp.task('scripts', function() {
   return gulp.src('src/js/**/*.js')
@@ -40,6 +42,7 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('dist/js'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
+
 // Images
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
@@ -47,14 +50,17 @@ gulp.task('images', function() {
     .pipe(gulp.dest('dist/images'))
     .pipe(notify({ message: 'Images task complete' }));
 });
+
 // Clean
 gulp.task('clean', function(cb) {
     del(['dist/css', 'dist/js', 'dist/images'], cb)
 });
+
 // Default task
 gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
+
 // Watch
 // gulp.task('watch', function() {
 //   // Watch .scss files
