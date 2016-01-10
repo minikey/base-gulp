@@ -1,0 +1,53 @@
+.css_nano, .css_nano + p, [class*="css_nano"], .css_nano {
+    /* This is an example of cssnano in action */
+    font-weight: normal;
+    margin-top: 16px;
+    margin-top: 16px;
+    margin-top: 1rem;
+    margin-bottom: 32px;
+    margin-bottom: 32px;
+    margin-bottom: 2rem;
+    margin-left: 24px;
+    margin-left: 24px;
+    margin-left: 1.5rem;
+    margin-right: 40px;
+    margin-right: 40px;
+    margin-right: 2.5rem;
+    font-weight: normal;
+    padding: 28px;
+    padding: 28px;
+    padding: 1.75rem;
+    width: 744px;
+    width: 744px;
+    width: 46.5rem;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p {
+    font-weight: bold;
+}
+/* VISUALS */
+
+.column_one, .column_two {
+    border: 1px solid #ccc;
+    border: 1px solid #ccc;
+    border: 0.0625rem solid #ccc;
+}
+
+.column_two {
+    border-left: 0;
+}
+
+@media (max-width: 50rem) {
+    .column_one, .column_two {
+        border: 0.0625rem solid #ccc;
+    }
+
+    .column_two {
+        border-top: 0;
+    }
+}

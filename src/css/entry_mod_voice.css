@@ -1,0 +1,76 @@
+.css_nano, .css_nano + p, [class*="css_nano"], .css_nano {
+    /* This is an example of cssnano in action */
+    font-weight: normal;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 1.5rem;
+    margin-right: 2.5rem;
+    font-weight: normal;
+    padding: 1.75rem;
+    width: calc(50rem - (2 * 1.75rem));
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p {
+    font-weight: bold;
+}
+/* VISUALS */
+
+.column_one, .column_two {
+    border: 0.0625rem solid #ccc;
+}
+
+.column_two {
+    border-left: 0;
+}
+
+@media (max-width: 50rem) {
+    .column_one, .column_two {
+        border: 0.0625rem solid #ccc;
+    }
+
+    .column_two {
+        border-top: 0;
+    }
+}
+.top-box {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 43px;
+	background: #fff;
+	z-index: 99;
+	text-align: center;
+	will-change: transform;
+	transition: all 0.3s;
+	transform: translate3d(0, -43px, 0);
+}
+.top-box-anim-top {
+	transform: translate3d(0, 0, 0);
+}
+.top-box .inner-box {
+	position: relative;
+	margin: 0 auto;
+	width: 1140px;
+	height: 43px;
+	overflow: hidden;
+	text-align: left;
+	z-index: 1;
+	background: #fff;
+}
+.top-box .bg-shadow{
+	position: absolute;
+	width: 889px;
+	height: 76px;
+	background: url(src/images/fWindow_close.png) no-repeat;
+	top: 0;
+	left: 50%;
+	margin-left: -445px;
+	z-index: 0;
+	pointer-events: none;
+}

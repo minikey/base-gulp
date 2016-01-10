@@ -16,8 +16,48 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     // livereload = require('gulp-livereload'),
-    del = require('del');
-    
+	postcss = require('gulp-postcss'),
+	autoprefixer2 = require('autoprefixer'),
+	cssgrace = require('cssgrace'),
+	cssnext = require('postcss-cssnext'),
+	del = require('del'),
+	color_rgba_fallback = require('postcss-color-rgba-fallback'),	
+	opacity = require('postcss-opacity'),
+	pseudoelements = require('postcss-pseudoelements'),
+	vmin = require('postcss-vmin'),
+	pixrem = require('pixrem'),
+	will_change = require('postcss-will-change'),
+    atImport = require('postcss-import'),
+    mqpacker = require('css-mqpacker'),
+    cssnano = require('cssnano');
+
+// postCSS
+gulp.task('css', function () {
+    var processors = [
+        cssnext(),
+        cssgrace,
+        will_change,
+        autoprefixer2({browsers:'safari >= 9, ie >= 7'}),
+        color_rgba_fallback,
+        opacity,
+        pseudoelements,
+        vmin,
+        pixrem
+    ];
+	
+	return gulp.src('src/css/**/*.css').pipe(postcss(processors)).pipe(gulp.dest('dist/css'));
+})
+
+gulp.task('minify', ['css'], function () {
+    var processors = [
+        atImport,
+        mqpacker,
+        cssnano
+    ];
+
+    return gulp.src('src/css/**/*.css').pipe(postcss(processors)).pipe(gulp.dest('dist/css'))
+});
+
 // Styles
 gulp.task('styles', function() {
   return gulp.src('src/css/**/*.css')
@@ -53,14 +93,13 @@ gulp.task('images', function() {
 
 // Clean
 gulp.task('clean', function(cb) {
-    del(['dist/css', 'dist/js', 'dist/images'], cb)
+    del(['dist/css', 'dist/js', 'dist/images'], cb);
 });
 
 // Default task
 gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
-
 // Watch
 // gulp.task('watch', function() {
 //   // Watch .scss files
